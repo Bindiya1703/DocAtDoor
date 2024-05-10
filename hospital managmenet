@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="icon" href="a.png">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale.0">
+    <title>Find a Medician</title>
+    <script>
+        const username = 'John Doe'; // Replace this with the actual username
+const firstLetter = username.charAt(0).toUpperCase();
+const profileLink = document.querySelector('');
+
+if (profileLink) {
+    profileLink.innerHTML = `<i class="fa fa-user-circle-o"></i> ${firstLetter}.`;
+    profileLink.href = 'loginpage.html';
+}
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 800px;
+            padding: 16px;
+            background-color: white;
+            margin: 0 auto;
+            margin-top: 50px;
+            box-shadow: 0px 0px 10px 0px;
+        }
+        .container h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .container label {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .container input[type="text"], .container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="onemoree.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <h1>CARE TRACK HOSPITAL</h1>
+</head>
+<body
+style="background-image:url(gif2.gif);>
+    
+    <nav>
+    <label class="toggle">
+        <i class="fa fa bars"></i>
+    </label>
+    <ul>
+        <li><a href="home.html">home</a></li>
+            <li><a href="service.html">services</a></li>
+            <li><a href="appoiment.html">appointment</a></li>
+            <li><a href="medician.html">medician</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+        </ul>
+        <div class="socialtop">
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-whatsapp"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <!-- <a href="#"><i class="fa fa-shopping-cart"></i></a> -->
+            <a href="loginpage.html"><i class="fa fa-user-circle-o"> My Account</i></a>
+            
+        </div>
+    </div>
+</nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
+<script>
+$('.toggle i').click(function (){
+    $('ul').toggleclass('show');
+});
+</script>
+
+<marquee direction="right"
+                behavior="alternate"
+                style="background-color: #f0f0f0,border:rgb(255, 255, 255) 2px SOLID,color(srgb red green blue)">
+            <h3 style="background-color: #ddd;"> 
+                HOURS:Mon-Fri: 8:00 AM - 5:00 PM , Saturday: 9:00 AM - 1:00 PM , Sunday: Closed</h3>
+                </marquee>
+<br>
+<br>
+<br>
+    <div class="container">
+        <h1>Find a Medician</h1>
+        <form>
+            <label for="specialization">Specialization:</label>
+            <select id="specialization" name="specialization">
+                <option value="">Select</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="dermatology">Dermatology</option>
+                <option value="gastroenterology">Gastroenterology</option>
+                <option value="neurology">Neurology</option>
+                <option value="orthopedics">Orthopedics</option>
+                <option value="pediatrics">Pediatrics</option>
+                <option value="psychiatry">Psychiatry</option>
+                <option value="radiology">Radiology</option>
+                <option value="surgery">Surgery</option>
+            </select>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Enter location">
+            <button type="button" id="find-btn">Find</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('find-btn').addEventListener('click', function() {
+            var specialization = document.getElementById('specialization').value;
+            var location = document.getElementById('location').value;
+            if (specialization && location) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'find_medician.php?specialization=' + specialization + '&location=' + location, true);
+                xhr.onload = function() {
+                    if (this.status == 200) {
+                        var result = JSON.parse(this.responseText);
+                        var html = '';
+                        if (result.length) {
+                            result.forEach(function(medician) {
+                                html += '<p><strong>' + medician.name + '</strong><br>' +
+                                    medician.specialization + '<br>' +
+                                    medician.location + '</p>';
+                            });
+                            
